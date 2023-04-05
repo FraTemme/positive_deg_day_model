@@ -10,6 +10,12 @@
 ##### START FUNCTION #####
 ########################################################################################################################
 
+#### import
+import numpy as np
+import pandas as pd
+import xarray as xr
+import math
+
 #### HAVERSINE FUNCTION for calculation of distance between two points
 def haversine(lat1,lon1,lat2,lon2):
     lat1_rad = math.radians(lat1)
