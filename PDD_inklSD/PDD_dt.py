@@ -9,11 +9,11 @@ import xarray as xr
 import pandas as pd
 
 #### set file directories
-infile = './testdata/MSM_99to00_testdata.nc'               # input path
-outfile = './testdata/MSM_99to00_testout.nc'               # output path
+infile = '../testdata/MSM_1m_testdata.nc'               # input path
+outfile = './MSM_1m_testout.nc'               # output path
 
-SVFfile = './testdata/snowdrift/LUT_SVFdir45.nc'
-DIRfile = './testdata/snowdrift/Wind_99to00.csv'
+SVFfile = '../testdata/LUT_SVFdir45.nc'
+WINDfile = '../testdata/Wind_1m.csv'
 
 #### specify parameters
 ## general
@@ -28,7 +28,7 @@ DDFsnow = 3.0  # melt factor for snow in mm/d/°C
 Temp_in_K = False  # Is the input temperature given in Kelvin or degrees Celsius?
 
 ## snowdrift
-Dmax = 6.0         # maximum deposition (mm)
+Dmax = 8.0         # maximum deposition (mm)
 
 
 
@@ -53,7 +53,7 @@ Temp[:,MASK == 0.0] = np.nan         # cut temperature input to glacier mask
 dsSVF = xr.open_dataset(SVFfile)
 LUT_SVF = dsSVF.SVFdir
 
-Wind = pd.read_csv(DIRfile, delimiter=';')
+Wind = pd.read_csv(WINDfile, delimiter=',')
 WS = Wind.WS
 DIR = Wind.DIR
 
@@ -93,7 +93,7 @@ for i in np.arange(0,len(ACC)):
     dir = 5 * int(DIR[i]/5)                                       # find respective wind direction and round to 5 deg sector
     SVF = np.array(LUT_SVF.sel(count = dir))                      # chose SVF at respective wind direction
 
-    Cwind = (WS[i] / 4.56) * E2 * (Dmax * (1 - SVF) - 1)  + 0.1   # correction factor
+    Cwind = (WS[i] / 4.56) * E2 * (Dmax * (1 - SVF) - 1)  + 0.0   # correction factor
 
     SNOW_SD[i,:,:] = (ACC[i,:,:] + Cwind * ACC[i,:,:])            # corrected snowfall
 

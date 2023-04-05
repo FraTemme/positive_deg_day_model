@@ -9,8 +9,8 @@ import numpy as np
 import xarray as xr
 
 #### set file directories
-infile = './Code_202303/testdata/MSM_99to00_testdata.nc'   # input path
-outfile = './Code_202303/testdata/MSM_99to00_testout.nc'               # output path
+infile = '../testdata/MSM_1m_testdata.nc'   # input path
+outfile = './MSM_1m_testout.nc'               # output path
 
 
 #### specify parameters

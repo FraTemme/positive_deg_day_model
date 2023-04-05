@@ -9,8 +9,12 @@ import pandas as pd
 import xarray as xr
 import math
 
+# Import user defined routines and packages
+# loading input data
+from relshadFunct_SD import *
+
 #### read in necessary input
-ds = xr.open_dataset('~/Documents/PhD/Modelle/COSIPY/create_static/data/static/Schiaparelli_static_200m.nc')
+ds = xr.open_dataset('./DEM.nc')
 DEM = np.array(ds.HGT)
 MASK = np.array(ds.MASK)
 ASP = np.array(ds.ASPECT)+180
@@ -26,7 +30,7 @@ asp = np.radians(ASP)
 directions = np.arange(0,360,5)
 
 #### empty array to fill
-LUT_SVFdir = np.zeros((len(directions),102,102))
+LUT_SVFdir = np.zeros((len(directions),len(lats),len(lons)))
 i = 0
 
 
