@@ -17,7 +17,7 @@ from relshadFunct_SD import *
 ds = xr.open_dataset('./DEM.nc')
 DEM = np.array(ds.HGT)
 MASK = np.array(ds.MASK)
-ASP = np.array(ds.ASPECT)+180
+ASP = np.array(ds.ASPECT)
 SLO = np.array(ds.SLOPE)
 lats = np.array(ds.lat)
 lons = np.array(ds.lon)
@@ -92,7 +92,7 @@ ds_SVF.lat.attrs['standard_name'] = 'count'
 ds_SVF['HGT'] = ds.HGT
 ds_SVF['MASK'] = ds.MASK
 ds_SVF['SLOPE'] = ds.SLOPE
-ds_SVF['ASPECT'] = ds.ASPECT+180
+ds_SVF['ASPECT'] = ds.ASPECT
 ds_SVF['SVFdir'] = LUT_SVFdir
 
 
